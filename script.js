@@ -2,6 +2,7 @@
 let userGuess;
 let computerGuess;
 let result;
+
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
@@ -27,8 +28,17 @@ function scissorsClicked() {
 }
 
 function computerGuesses() {
-  computerGuess = "scissors";
-  //   let ranNum;
+  //   computerGuess = "scissors";
+  let ranNum = Math.floor(Math.random() * (2 + 1));
+
+  if (ranNum === 0) {
+    computerGuess = "rock";
+  } else if (ranNum === 1) {
+    computerGuess = "paper";
+  } else {
+    computerGuess = "scissors";
+  }
+
   // random 0 1 eller 2
   // if sætning hvis ranNum er 0 så er computer guess scissors osv...
   console.log("Computer Guess:", computerGuess);
@@ -75,14 +85,12 @@ function determineWinner() {
 }
 
 function handAnimation() {
-  console.log("animation starter");
   document.querySelector("#player1").classList.add("shake");
   document.querySelector("#player2").classList.add("shake");
   document.querySelector(".player").addEventListener("animationend", visResultat);
 }
 
 function visResultat() {
-  console.log("her er resultatet");
   document.querySelector("#player1").classList.remove("shake");
   document.querySelector("#player2").classList.remove("shake");
 
@@ -123,13 +131,15 @@ function visResultat() {
 }
 
 function restartGame() {
-  console.log("restart");
   document.querySelector("#lose").classList.add("hidden");
   document.querySelector("#win").classList.add("hidden");
   document.querySelector("#draw").classList.add("hidden");
   document.querySelector("#player1").classList.remove("rock");
   document.querySelector("#player1").classList.remove("scissors");
   document.querySelector("#player1").classList.remove("paper");
+  document.querySelector("#player2").classList.remove("rock");
+  document.querySelector("#player2").classList.remove("scissors");
+  document.querySelector("#player2").classList.remove("paper");
 
   //   this.classList = "";
   //   this.firstElementChild.classList = "";
