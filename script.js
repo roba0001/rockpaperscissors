@@ -6,6 +6,8 @@ let result;
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
+const leftHand = document.querySelector("#player1");
+const rightHand = document.querySelector("#player2");
 
 rock.addEventListener("click", rockClicked);
 paper.addEventListener("click", paperClicked);
@@ -84,44 +86,38 @@ function determineWinner() {
 }
 
 function handAnimation() {
-  document.querySelector("#player1").classList.add("shake");
-  document.querySelector("#player2").classList.add("shake");
+  leftHand.classList.add("shake");
+  rightHand.classList.add("shake");
   document.querySelector(".player").addEventListener("animationend", visResultat);
 }
 
 function visResultat() {
-  document.querySelector("#player1").classList.remove("shake");
-  document.querySelector("#player2").classList.remove("shake");
+  leftHand.classList.remove("shake");
+  rightHand.classList.remove("shake");
 
   if (result === "draw") {
     document.querySelector("#draw").classList.remove("hidden");
-  }
-  if (result === "computer") {
+  } else if (result === "computer") {
     document.querySelector("#lose").classList.remove("hidden");
-  }
-  if (result === "user") {
+  } else {
     document.querySelector("#win").classList.remove("hidden");
   }
   // ændre users håndtegn
   if (userGuess === "scissors") {
-    document.querySelector("#player1").classList.add("scissors");
-  }
-  if (userGuess === "rock") {
-    document.querySelector("#player1").classList.add("rock");
-  }
-  if (userGuess === "paper") {
-    document.querySelector("#player1").classList.add("paper");
+    leftHand.classList.add("scissors");
+  } else if (userGuess === "rock") {
+    leftHand.classList.add("rock");
+  } else {
+    leftHand.classList.add("paper");
   }
 
   //   ændre computers håndtegn
   if (computerGuess === "scissors") {
-    document.querySelector("#player2").classList.add("scissors");
-  }
-  if (computerGuess === "rock") {
-    document.querySelector("#player2").classList.add("rock");
-  }
-  if (computerGuess === "paper") {
-    document.querySelector("#player2").classList.add("paper");
+    rightHand.classList.add("scissors");
+  } else if (computerGuess === "rock") {
+    rightHand.classList.add("rock");
+  } else {
+    rightHand.classList.add("paper");
   }
 
   rock.addEventListener("click", restartGame);
@@ -133,12 +129,12 @@ function restartGame() {
   document.querySelector("#lose").classList.add("hidden");
   document.querySelector("#win").classList.add("hidden");
   document.querySelector("#draw").classList.add("hidden");
-  document.querySelector("#player1").classList.remove("rock");
-  document.querySelector("#player1").classList.remove("scissors");
-  document.querySelector("#player1").classList.remove("paper");
-  document.querySelector("#player2").classList.remove("rock");
-  document.querySelector("#player2").classList.remove("scissors");
-  document.querySelector("#player2").classList.remove("paper");
+  leftHand.classList.remove("rock");
+  leftHand.classList.remove("scissors");
+  leftHand.classList.remove("paper");
+  rightHand.classList.remove("rock");
+  rightHand.classList.remove("scissors");
+  rightHand.classList.remove("paper");
 
   //   this.classList = "";
   //   this.firstElementChild.classList = "";
