@@ -28,9 +28,10 @@ function scissorsClicked() {
 }
 
 function computerGuesses() {
-  //   computerGuess = "scissors";
+  // random nummer kan være 0 1 eller 2
   let ranNum = Math.floor(Math.random() * (2 + 1));
 
+  // if sætning hvis ranNum er 0 så er computer guess rock osv...
   if (ranNum === 0) {
     computerGuess = "rock";
   } else if (ranNum === 1) {
@@ -39,8 +40,6 @@ function computerGuesses() {
     computerGuess = "scissors";
   }
 
-  // random 0 1 eller 2
-  // if sætning hvis ranNum er 0 så er computer guess scissors osv...
   console.log("Computer Guess:", computerGuess);
   console.log("User Guess:", userGuess);
   determineWinner();
