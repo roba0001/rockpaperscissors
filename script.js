@@ -1,13 +1,14 @@
-"use strict";
+import { $, $$ } from "../utils/dom.js";
+import { getRandomNumber } from "../utils/numbers.js";
 let userGuess;
 let computerGuess;
 let result;
 
-const rock = document.querySelector(".rock");
-const paper = document.querySelector(".paper");
-const scissors = document.querySelector(".scissors");
-const leftHand = document.querySelector("#player1");
-const rightHand = document.querySelector("#player2");
+const rock = $(".rock");
+const paper = $(".paper");
+const scissors = $(".scissors");
+const leftHand = $("#player1");
+const rightHand = $("#player2");
 
 rock.addEventListener("click", rockClicked);
 paper.addEventListener("click", paperClicked);
@@ -31,7 +32,8 @@ function scissorsClicked() {
 
 function computerGuesses() {
   // random nummer kan være 0 1 eller 2
-  let ranNum = Math.floor(Math.random() * (2 + 1));
+  let ranNum = getRandomNumber(3);
+  // Math.floor(Math.random() * (2 + 1));
 
   // if sætning hvis ranNum er 0 så er computer guess rock osv...
   if (ranNum === 0) {
@@ -88,7 +90,7 @@ function determineWinner() {
 function handAnimation() {
   leftHand.classList.add("shake");
   rightHand.classList.add("shake");
-  document.querySelector(".player").addEventListener("animationend", visResultat);
+  $(".player").addEventListener("animationend", visResultat);
 }
 
 function visResultat() {
@@ -96,11 +98,14 @@ function visResultat() {
   rightHand.classList.remove("shake");
 
   if (result === "draw") {
-    document.querySelector("#draw").classList.remove("hidden");
+    // document.querySelector("#draw");
+    $("#draw").classList.remove("hidden");
   } else if (result === "computer") {
-    document.querySelector("#lose").classList.remove("hidden");
+    // document.querySelector("#lose")
+    $("#lose").classList.remove("hidden");
   } else {
-    document.querySelector("#win").classList.remove("hidden");
+    // document.querySelector("#win")
+    $("#win").classList.remove("hidden");
   }
   // ændre users håndtegn
   if (userGuess === "scissors") {
